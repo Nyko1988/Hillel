@@ -24,10 +24,14 @@ print(lst2)
 #Є стрінг з певним текстом (можна скористатися input або константою).
 # Напишіть код, який визначить кількість слів в цьому тексті, які закінчуються на "о" (враховуються як великі так і маленькі).
 print("Ex. #3")
-slowo = 'MasO rovbn O topo r pop o knobo'
+import re
+sentence = "I've always thoughto that the only sentence that uses all the letters of the \n" \
+           "alphabet was \"The quick brown fox jumps over the lazy dogo.\" Is there another ono?"
+sentence_cleared = re.sub( r'\W', ' ', sentence)
+print(sentence_cleared)
 number_of_words = 0
-slowo_list = slowo.split()
-for i in slowo_list:
+word_list = sentence_cleared.split()
+for i in word_list:
     if i[-1].casefold() == 'o':
         number_of_words += 1
 
