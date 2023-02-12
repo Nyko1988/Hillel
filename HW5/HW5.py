@@ -68,6 +68,7 @@ from pprint import pprint
 new_student_name = 'Микитюк'
 student[new_student_name] = {
                 'Пошта': 'test@gmail.com',
+                'Номер телефону': +3809959595959,
                 'Вік': 35,
                 'Середній бал': 90.5
                             }
@@ -78,13 +79,10 @@ for person in student:
     full_score += student[person]['Середній бал']
     if student[person]['Середній бал'] > 90:
         print(f"Student '{person}' has an average score '{student[person]['Середній бал']}' ")
+    if student[person]['Номер телефону'] == None:
+        student[person]['Номер телефона батьків'] = '+380900000000'
+        print( f'Student "{person}", your phone will be phone of your parents "{student[person]["Номер телефона батьків"]}"')
 
 print('Average score of whole group is:', full_score/len(student))
-
-for person in student:
-    if 'Номер телефону' not in student[person]:
-        student[person]['Номет телефона батьків'] = '+380900000000'
-        print(f'Student "{person}", your phone will be phone of your parents "{student[person]["Номет телефона батьків"]}"')
-
 pprint(student)
 
