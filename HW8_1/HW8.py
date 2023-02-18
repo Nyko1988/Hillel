@@ -55,6 +55,8 @@ def cashier_in_cinema():
 
 print('Ex. #1')
 cashier_in_cinema()
+
+
 #Візьміть функції з попереднього ДЗ, покладіть їх у файл lib.py і імпортуйте в основний файл для виконання
 import lib
 
