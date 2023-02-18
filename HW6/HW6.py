@@ -2,95 +2,67 @@
 #Якщо обидва аргумени відносяться до числових типів функція пермножує ці аргументи і повертає результат
 #Якшо обидва аргументи відносяться до типу стрінг функція обʼєднує їх в один і повертає
 #В будь-якому іншому випадку - функція повертає кортеж з двох агрументів
-print('Ex #1:')
-
-def compare_types_of_arguments(fist_arg, second_arg):
-    if type(fist_arg) == type(second_arg):
-        print(f"You entered the same types: {type(fist_arg)}")
-        return True
-    print("You entered different types")
-
-def check_types_int_or_str(element):
-    if type(element) == int or type(element) == str:
-        return True
-
-def multiplication_two_arguments(first_arg, second_arg):
-    return first_arg * second_arg
-
-def addition_two_arguments(first_arg, second_arg):
-    return first_arg + second_arg
-
-def create_tuple(first_element, second_element):
-    return tuple((first_element, second_element))
-
-def main_logic(first_element, second_element):
-    if compare_types_of_arguments(first_element, second_element):
-        if check_types_int_or_str(first_element):
-            if type(first_element) == str:
-                result = addition_two_arguments(first_element, second_element)
-            else:
-                result = multiplication_two_arguments(first_element, second_element)
+print('Ex. #1')
+def compare_elements(first_arg, second_arg):
+    if type(first_arg) == type(second_arg):
+        if type(first_arg) == str:
+            return first_arg + second_arg
+        elif type(first_arg) == int:
+            return first_arg * second_arg
         else:
-            result = create_tuple(first_element, second_element)
+            return first_arg, second_arg
     else:
-        result = create_tuple(first_element, second_element)
-    return result
+        return first_arg, second_arg
 
-
-first_element = [4, 5, 10]
-second_element = ['dsd']
-
-result = main_logic(first_element, second_element)
-print(f'The result is: {result}')
+print(compare_elements(3, 2))
+print(compare_elements('1', 'd'))
+print(compare_elements(2, [1, 3]))
+print(compare_elements([1, 3], ['d', 5]))
 
 
 #Візьміть попереднє дз "Касир в кінотеатрі" і перепишіть за допомогою функцій. Памʼятайте про SRP!
-print('Ex #2:')
+"""Напишіть программу "Касир в кінотеватрі", яка попросіть користувача ввести свсвій вік (можно використати константу або функцію input(), 
+на екран має бути виведено лише одне повідомлення, також подумайте над варіантами, коли введені невірні дані).
+якщо користувачу менше 7 - вивести повідомлення"Де твої батьки?"
+якщо користувачу менше 16 - вивести повідомлення "Це фільм для дорослих!"
+якщо користувачу більше 65 - вивести повідомлення"Покажіть пенсійне посвідчення!"
+якщо вік користувача містить цифру 7 - вивести повідомлення "Вам сьогодні пощастить!"
+у будь-якому іншому випадку - вивести повідомлення "А білетів вже немає!" """
+print('Ex. #2')
 
 def age_input():
-    age = input('Введіть ваший вік:')
-    return age
+    while True:
+        age = input('Введіть ваш вік: ')
+        try:
+            age_int = int(age)
+        except ValueError:
+            print('Будь ласка введіть корректний вік')
+            continue
+        if 1 > age_int or 100 < age_int:
+            print('Будь ласка введіть корректний вік')
+            continue
+        else:
+            return age_int
 
-def age_is_digit(age):
-    if age.isdigit():
-        return True
-
-def age_in_correct_renge(age):
-    if 1 <= age < 100:
-        return True
-
-def age_is_seven(age):
-    if age.find("7") != -1:
-        return True
-
-def age_is_correct(age):
-    if age < 7:
-        print("Де твої батьки?")
+def compare_age(age):
+    message = ''
+    if str(age).find("7") != -1:
+        message = "Вам сьогодні пощастить!"
+    elif age < 7:
+        message = "Де твої батьки?"
     elif 7 <= age < 16:
-        print("Це фільм для дорослих!")
+        message = "Це фільм для дорослих!"
     elif 16 <= age <= 65:
-        print("А білетів вже немає!")
+        message = "А білетів вже немає!"
     elif 65 < age < 100:
-        print("Покажіть пенсійне посвідчення!")
-
-def print_message_not_correct_age():
-    print("Введіть будьласка коректний вік")
+        message = "Покажіть пенсійне посвідчення!"
+    return message
 
 def cashier_in_cinema():
-    while True:
-        age = age_input()
-        if age.isdigit():
-            age_int = int(age)
-            if age_in_correct_renge(age_int):
-                if age_is_seven(age):
-                    print("Вам сьогодні пощастить!")
-                else:
-                    age_is_correct(age_int)
-                break
-            else:
-                print_message_not_correct_age()
-        else:
-            print_message_not_correct_age()
+    age = age_input()
+    print(compare_age(age))
 
 
 cashier_in_cinema()
+
+
