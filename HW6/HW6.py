@@ -60,9 +60,10 @@ def compare_age(age):
 
 def cashier_in_cinema():
     age = age_input()
-    print(compare_age(age))
+    result_message = compare_age(age)
+    return result_message
 
 
-cashier_in_cinema()
+print(cashier_in_cinema())
 
 
