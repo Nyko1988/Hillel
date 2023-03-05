@@ -10,8 +10,6 @@
 # do not forget about requirements.txt
 import lib
 
-
-str = 2  # this is just a piece of code to refactor and test
 print(lib.random_string_generation(20.))
 print(lib.random_string_generation(-1))
 print(lib.get_random_number())

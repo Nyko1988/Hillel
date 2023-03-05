@@ -25,7 +25,7 @@ def get_random_number() -> float:
     """
     this function generate random float number
     Returns:
-
+        (float)
     """
     return random_module.random() * random_module.randint(-10 ** 10, 10 ** 10)
 
@@ -40,4 +40,4 @@ def random_string_generation(length_str: Union[float, int] = 10) -> str:
     Returns:
 
     """
-    return ''.join(choice(string.ascii_lowercase) for i in range(int(length_str)))
+    return ''.join(choice(string.ascii_lowercase) for elem in range(int(length_str)))
