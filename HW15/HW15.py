@@ -20,19 +20,11 @@ def session_func(method, url):
 current_date = datetime.date.today()
 url = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json'
 file_name_rate = "rate" + '_' + str(current_date) + '.' + 'txt'
+rate_response = session_func('GET', url)
 
-while True:
-    try:
-        rate_response = session_func('GET', url)
-    except Exception as log:
-        print(log)
-        print('Connection not established')
-        break
 
-    with open(file_name_rate, 'wt', encoding='utf-8') as file:
-        file.write((str(current_date)) + '\n')
-        for elem in json.loads(rate_response.text):
-            file.write(f'{elem["txt"]}  to UAH: {elem["rate"]}' + '\n')
-        break
+with open(file_name_rate, 'wt', encoding='utf-8') as file:
+    file.write((str(current_date)) + '\n')
+    for elem in json.loads(rate_response.text):
+        file.write(f'{elem["txt"]}  to UAH: {elem["rate"]}' + '\n')
 
-print(str(rate_response).find(''))
